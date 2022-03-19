@@ -1,5 +1,6 @@
 #pragma once
 
+// standard
 #include <vector>
 #include <list>
 #include <map>
@@ -7,7 +8,6 @@
 #include <set>
 #include <unordered_set>
 #include <thread>
-#include <format>
 #include <algorithm>
 #include <type_traits>
 #include <numbers>
@@ -28,6 +28,9 @@
 #include <stack>
 #include <unordered_map>
 
+// os
+#include <Windows.h>
+
 #include "Types.h"
 #include "Definition.h"
 #include "CommonGlobal.h"
@@ -36,6 +39,8 @@
 #include "LockGuard.h"
 
 using namespace std::literals;
+using namespace std::string_literals;
+using namespace std::string_view_literals;
 /*
  * precompiled header에도 포함하며 Client,Server 프로젝트가 동시에 참조합니다.
  */

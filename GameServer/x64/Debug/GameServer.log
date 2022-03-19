@@ -1,2 +1,4 @@
-﻿  GameServer.cpp
-  GameServer.vcxproj -> C:\WorkingDirectory\Server\Server\Bin\Debug\GameServer.exe
+﻿  Precompiled.cpp
+  GameServer.cpp
+  Stack.cpp
+  GameServer.vcxproj -> C:\WorkingDirectory\Server\Bin\Debug\GameServer.exe

@@ -146,68 +146,31 @@ private:
 	static inline std::array<Lock, 4u> _Locks{};
 };
 
-
-static void TestCase1()
+struct Super
 {
-
+	int value = 0;
 };
 
+struct Sub : public Super
+{
+	int value2 = 0;
+};
 
 int main()
 {
 	CoreGlobal::Instance().Initialize();
-	//DeadlockTester::Case1();
-	DeadlockTester::Case3();
-	//DeadlockTester::Case3();
+	int* Tester = xnew<int>(0);
+	auto Copy = Tester;
+	Copy++;
+	*Copy = 0;
+	xdelete(Tester);
 
-	// 데드락 케이스 1 : 0 <-> 1 
-	
-
-
-	//auto TestReader = [](TestLock& _TestLock)
-	//{
-	//	while(true)
-	//	{
-	//		const auto Value = _TestLock.Read();
-	//		std::cout << Value << std::endl;
-	//		std::this_thread::sleep_for(1ms);
-	//	}
-	//};
-
-	//auto TestPush = [](TestLock& _TestLock)
-	//{
-	//	while (true)
-	//	{
-	//		_TestLock.Push();
-	//		std::this_thread::sleep_for(1ms);
-	//	}
-	//};
-
-	//auto TestPop = [](TestLock& _TestLock)
-	//{
-	//	while (true)
-	//	{
-	//		_TestLock.Pop();
-	//		std::this_thread::sleep_for(1ms);
-	//	}
-	//};
-
-	//TestLock _TestLock;
-
-	//for (uint32 i = 0; i < 3; ++i)
-	//{
-	//	ThreadManager::Instance().Launch(TestPush, std::ref(_TestLock));
-	//}
-
-	//for (uint32 i = 0; i < 3; ++i)
-	//{
-	//	ThreadManager::Instance().Launch(TestPop, std::ref(_TestLock));
-	//}
-
-	//for (uint32 i = 0; i < 10; ++i)
-	//{
-	//	ThreadManager::Instance().Launch(TestReader, std::ref(_TestLock));
-	//}
+	static const size_t NumBytes = 1U << 6U;
+	uint8_t* const TestBytes = new uint8_t[NumBytes];
+	// Memory overrun:
+	static const size_t SomeVariable = 7U;
+	TestBytes[1U << SomeVariable] = 1U;
+	delete[] TestBytes;
 
 	ThreadManager::Instance().Join();
 }

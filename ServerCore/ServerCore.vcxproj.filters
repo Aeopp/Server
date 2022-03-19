@@ -19,15 +19,18 @@
     <Filter Include="Interface">
       <UniqueIdentifier>{2a1fa352-ac32-41a5-b522-5b910df5b426}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{297309f2-3c0c-4f44-989a-c698d7c2f569}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\Definition">
+      <UniqueIdentifier>{877a8fb2-de5a-41b0-99c4-9ea1ae773a47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Types.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="Precompiled.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Definition.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="ThreadManager.h">
@@ -57,6 +60,21 @@
     <ClInclude Include="DeadLockDetector.h">
       <Filter>Thread</Filter>
     </ClInclude>
+    <ClInclude Include="Allocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Definition.h">
+      <Filter>Main\Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="DefineLog.h">
+      <Filter>Main\Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="DefineMemory.h">
+      <Filter>Main\Definition</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -85,6 +103,12 @@
     </ClCompile>
     <ClCompile Include="DeadLockDetector.cpp">
       <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Allocator.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>Memory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

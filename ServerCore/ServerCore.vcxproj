@@ -163,12 +163,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Allocator.h" />
     <ClInclude Include="CommonGlobal.h" />
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="DeadLockDetector.h" />
+    <ClInclude Include="DefineMemory.h" />
     <ClInclude Include="Definition.h" />
     <ClInclude Include="CommonThreadLocal.h" />
     <ClInclude Include="Lock.h" />
+    <ClInclude Include="DefineLog.h" />
+    <ClInclude Include="Memory.h" />
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="LockGuard.h" />
     <ClInclude Include="SingletonInterface.hpp" />
@@ -177,11 +181,13 @@
     <ClInclude Include="WriteLockGuard.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Allocator.cpp" />
     <ClCompile Include="CommonGlobal.cpp" />
     <ClCompile Include="CommonInclude.cpp" />
     <ClCompile Include="CommonThreadLocal.cpp" />
     <ClCompile Include="DeadLockDetector.cpp" />
     <ClCompile Include="Lock.cpp" />
+    <ClCompile Include="Memory.cpp" />
     <ClCompile Include="Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
