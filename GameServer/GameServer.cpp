@@ -159,18 +159,8 @@ struct Sub : public Super
 int main()
 {
 	CoreGlobal::Instance().Initialize();
-	int* Tester = xnew<int>(0);
-	auto Copy = Tester;
-	Copy++;
-	*Copy = 0;
-	xdelete(Tester);
 
-	static const size_t NumBytes = 1U << 6U;
-	uint8_t* const TestBytes = new uint8_t[NumBytes];
-	// Memory overrun:
-	static const size_t SomeVariable = 7U;
-	TestBytes[1U << SomeVariable] = 1U;
-	delete[] TestBytes;
+	std::vector<AllocatorTester, StlAllocator<AllocatorTester>> v(2);
 
 	ThreadManager::Instance().Join();
 }

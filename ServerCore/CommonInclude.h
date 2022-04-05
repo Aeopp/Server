@@ -37,6 +37,7 @@
 #include "CommonThreadLocal.h"
 #include "Lock.h"
 #include "LockGuard.h"
+#include "Container.h"
 
 using namespace std::literals;
 using namespace std::string_literals;
