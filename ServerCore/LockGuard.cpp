@@ -1,40 +1,42 @@
 #include "Precompiled.h"
 #include "LockGuard.h"
 
-#ifdef _DEBUG
-LockGuard::LockGuard(Lock& Target, const Use UseFlag, const std::string& Name)
-	: LockGuard(Target, UseFlag)
-{
-	_Name = std::format("[ ID:{} Class:{} ]", Target.GetLockID(), Name);
-	if (_UseFlag == Use::Read)
-	{
-		_Lock.ReadLock(_Name);
-	}
-	else
-	{
-		_Lock.WriteLock(_Name);
-	}
+//#ifdef _DEBUG
+//LockGuard::LockGuard(Lock& Target, const Use UseFlag, const std::string& Name)
+//	: LockGuard(Target, UseFlag)
+//{
+//	_Name = std::format("[ ID:{} Class:{} ]", Target.GetLockID(), Name);
+//	if (_UseFlag == Use::Read)
+//	{
+//		_Lock.ReadLock(_Name);
+//	}
+//	else
+//	{
+//		_Lock.WriteLock(_Name);
+//	}
+//
+//}
+//#endif //_DEBUG
 
-}
-#endif //_DEBUG
+//LockGuard::LockGuard(Lock& Target, const Use UseFlag) :
+//	_Lock{ Target }
+//	, _UseFlag{ UseFlag }
+//
+//{
+//	if (_UseFlag == Use::Read)
+//	{
+//		_Lock.ReadLock();
+//	}
+//	else
+//	{
+//		_Lock.WriteLock();
+//	}
+//}
 
-LockGuard::LockGuard(Lock& Target, const Use UseFlag) :
-	_Lock{ Target }
-	, _UseFlag{ UseFlag }
-
-{
-	if (_UseFlag == Use::Read)
-	{
-		_Lock.ReadLock();
-	}
-	else
-	{
-		_Lock.WriteLock();
-	}
-}
-#ifdef _DEBUG
 LockGuard::~LockGuard()
 {
+
+#ifdef _DEBUG
 	if (_UseFlag == Use::Read)
 	{
 		if (_Name.empty())
@@ -43,7 +45,7 @@ LockGuard::~LockGuard()
 		}
 		else
 		{
-			_Lock.ReadUnlock(_Name);
+			_Lock.ReadUnlock();
 		}
 	}
 	else
@@ -54,13 +56,10 @@ LockGuard::~LockGuard()
 		}
 		else
 		{
-			_Lock.WriteUnlock(_Name);
+			_Lock.WriteUnlock();
 		}
 	}
-}
 #else //_DEBUG
-LockGuard::~LockGuard()
-{
 	if (_UseFlag == Use::Read)
 	{
 		_Lock.ReadUnlock();
@@ -69,5 +68,6 @@ LockGuard::~LockGuard()
 	{
 		_Lock.WriteUnlock();
 	}
-}
 #endif //_DEBUG
+
+}

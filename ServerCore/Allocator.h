@@ -1,5 +1,8 @@
 #pragma once
 
+class MemoryPool;
+class Memory;
+
 class Allocator
 {
 public:
@@ -80,4 +83,16 @@ public:
 	{
 		std::cout << "Destructor\n";
 	}
+}
+
+class PoolAllocator
+{
+public:
+	template<typename Type>
+	static Type* Alloc(const uint64 Size) noexcept
+	{
+		return Memory::Instance().Allocate<Type>(Size);
+	}
+
+	static void Release(void* const target) noexcept;
 };

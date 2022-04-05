@@ -7,6 +7,10 @@ DeadLockDetector::DeadLockDetector() :
 {
 }
 
+void DeadLockDetector::Initialize() & noexcept
+{
+}
+
 void DeadLockDetector::PushLock(LockInfo&& PushInfo)
 {
 	std::lock_guard Lock{ _Lock };

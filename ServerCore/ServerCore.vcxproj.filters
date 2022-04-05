@@ -75,6 +75,7 @@
     <ClInclude Include="Memory.h">
       <Filter>Memory</Filter>
     </ClInclude>
+    <ClInclude Include="MemoryPool.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -110,5 +111,6 @@
     <ClCompile Include="Memory.cpp">
       <Filter>Memory</Filter>
     </ClCompile>
+    <ClCompile Include="MemoryPool.cpp" />
   </ItemGroup>
 </Project>

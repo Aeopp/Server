@@ -173,6 +173,7 @@
     <ClInclude Include="Lock.h" />
     <ClInclude Include="DefineLog.h" />
     <ClInclude Include="Memory.h" />
+    <ClInclude Include="MemoryPool.h" />
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="LockGuard.h" />
     <ClInclude Include="SingletonInterface.hpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="DeadLockDetector.cpp" />
     <ClCompile Include="Lock.cpp" />
     <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="MemoryPool.cpp" />
     <ClCompile Include="Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

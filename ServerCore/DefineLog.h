@@ -1,5 +1,22 @@
 #pragma once
+#include <string_view>
+template<typename Type>
+constexpr const char* GET_TYPENAME()
+{
+	return typeid(Type).name();
+};
 
+template<typename Type>
+constexpr const char* GET_TYPENAME(Type PtrType)
+{
+	using DecayType = std::decay_t<Type>;
+	if (nullptr == PtrType)
+	{
+		return typeid(DecayType).name();
+	}
+	
+	return GET_TYPENAME<DecayType>();
+};
 /* -----------------
 		Log
 -------------------*/

@@ -27,3 +27,8 @@ void StompAllocator::Release(void* const Target) noexcept
 {
 	::VirtualFree(Target, 0, MEM_RELEASE);
 }
+
+void PoolAllocator::Release(void* const Target) noexcept
+{
+
+}

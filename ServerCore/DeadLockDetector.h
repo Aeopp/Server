@@ -1,11 +1,10 @@
 #pragma once
 #ifdef _DEBUG
-#include "Lock.h"
 
 class DeadLockDetector : public SingleTonInterface<DeadLockDetector>
 {
 public:
-	using LockIDType = Lock::IDType;
+	using LockIDType = int32;
 	struct LockInfo
 	{
 		using KeyType = LockIDType;
@@ -16,6 +15,9 @@ public:
 
 public:
 	DeadLockDetector();
+
+public:
+	void Initialize() & noexcept;
 
 public:
 	void PushLock(LockInfo&& PushInfo);
