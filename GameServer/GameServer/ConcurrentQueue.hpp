@@ -11,8 +11,8 @@ public:
 
 	template<typename... Types>
 	void Push(Types&&... value) noexcept;
-	bool TryPop(T&& value) noexcept;
-	void WaitPop(T&& value);
+	bool TryPop(T& value) noexcept;
+	void WaitPop(T& value);
 
 private:
 	mutex mutex_;

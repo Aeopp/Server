@@ -10,11 +10,6 @@ public:
 	LockFreeStack(const LockFreeStack&) = delete;
 	LockFreeStack& operator=(const LockFreeStack&) = delete;
 
-public:
-	template<typename... Types>
-	void Push(Types&&... args) noexcept;
-	bool TryPop(T&& value) noexcept;
-
 private:
 	struct Node
 	{
@@ -27,8 +22,24 @@ private:
 		T data;
 	};
 
+public:
+	template<typename... Types>
+	void Push(Types&&... args) noexcept;
+	bool TryPop(T& value) noexcept;
+	bool TryDelete(Node* const target) noexcept;
+
 private:
-	atomic<Node<T>*> head_;
+	static void DeleteNodes(const Node* target);
+
+private:
+	void ChainPendingNodeList(Node* const first, Node* const last);
+	void ChainPendingNodeList(Node* const node);
+	void ChainPendingNode(Node* const node);
+
+private:
+	atomic<Node*> head_;
+	atomic<uint64> popCount_; // 현재 pop 시도 중인 스레드 개수
+	atomic<Node*> pendingList_; // 삭제 보류 노드의 Head
 };
 
 template<typename T>
@@ -42,7 +53,7 @@ public:
 
 	template<typename... Types>
 	void Push(Types&&... value) noexcept;
-	bool TryPop(T&& value) noexcept;
+	bool TryPop(T& value) noexcept;
 	void WaitPop(T&& value);
 
 private:

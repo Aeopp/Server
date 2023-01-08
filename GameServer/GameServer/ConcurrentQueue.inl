@@ -16,7 +16,7 @@ void LockQueue<T>::Push(Types&&... value) noexcept
 }
 
 template <typename T>
-bool LockQueue<T>::TryPop(T&& value) noexcept
+bool LockQueue<T>::TryPop(T& value) noexcept
 {
 	lock_guard lock(mutex_);
 	if (queue_.empty())
@@ -29,7 +29,7 @@ bool LockQueue<T>::TryPop(T&& value) noexcept
 }
 
 template <typename T>
-void LockQueue<T>::WaitPop(T&& value)
+void LockQueue<T>::WaitPop(T& value)
 {
 	unique_lock lock(mutex_);
 	condVar_.wait(lock, [this] {return queue_.empty() == false; });
