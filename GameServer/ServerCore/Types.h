@@ -13,6 +13,9 @@
 #include <atomic>
 #include <mutex>
 #include <chrono>
+#include <condition_variable>
+#include <future>
+#include <memory>
 
 using namespace std;
 using namespace std::chrono;

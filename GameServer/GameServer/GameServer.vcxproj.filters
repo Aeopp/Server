@@ -13,8 +13,26 @@
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="SpinLock.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ConcurrentStack.hpp">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcurrentQueue.hpp">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcurrentStack.inl">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcurrentQueue.inl">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="SpinLock.h">
+      <Filter>Main</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
