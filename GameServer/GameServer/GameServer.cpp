@@ -24,11 +24,14 @@ int main()
 		ths.emplace_back([&ts]()
 		{
 			int value = -1;
-				while(ts.TryPop(value))
-				{
-					std::cout << "pop value : " << value << std::endl;
-				}
-			
+			while(true)
+			{
+				auto data = ts.TryPop();
+				if (nullptr == data)
+					return;
+
+				std::cout << "pop value : " << *data << std::endl;
+			}
 		});
 	}
 

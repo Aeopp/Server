@@ -5,6 +5,14 @@ template<typename T>
 class LockFreeStack
 {
 public:
+	struct CountedNodePtr
+	{
+		explicit CountedNodePtr();
+
+		int32 externalCount;
+		class Node* ptr;
+	};
+
 	explicit LockFreeStack();
 
 	LockFreeStack(const LockFreeStack&) = delete;
@@ -18,28 +26,21 @@ private:
 
 		friend class LockFreeStack;
 
-		Node* next;
-		T data;
+		CountedNodePtr next;
+		atomic<int32> internalCount;
+		shared_ptr<T> data;
 	};
 
 public:
 	template<typename... Types>
 	void Push(Types&&... args) noexcept;
-	bool TryPop(T& value) noexcept;
-	bool TryDelete(Node* const target) noexcept;
+	shared_ptr<T> TryPop() noexcept;
 
 private:
-	static void DeleteNodes(const Node* target);
+	void IncreaseHeadCount(CountedNodePtr& oldCounter);
 
 private:
-	void ChainPendingNodeList(Node* const first, Node* const last);
-	void ChainPendingNodeList(Node* const node);
-	void ChainPendingNode(Node* const node);
-
-private:
-	atomic<Node*> head_;
-	atomic<uint64> popCount_; // 현재 pop 시도 중인 스레드 개수
-	atomic<Node*> pendingList_; // 삭제 보류 노드의 Head
+	atomic<CountedNodePtr> head_;
 };
 
 template<typename T>
